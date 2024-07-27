@@ -1,0 +1,105 @@
+:root {
+  --bs-blue: #0d6efd;
+  --bs-indigo: #6610f2;
+  --bs-purple: #6f42c1;
+  --bs-pink: #d63384;
+  --bs-red: #dc3545;
+  --bs-orange: #fd7e14;
+  --bs-yellow: #ffc107;
+  --bs-green: #198754;
+  --bs-teal: #20c997;
+  --bs-cyan: #0dcaf0;
+  --bs-white: #fff;
+  --bs-gray: #6c757d;
+  --bs-gray-dark: #343a40;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #f8f9fa;
+  --bs-dark: #212529;
+  --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  }
+
+div{
+  box-sizing: border-box !important;
+}
+
+body{
+  margin: 0px !important;
+  padding:  0px !important;
+  background-image: url('../images/question-marks.png');
+  background-size: contain;
+  min-height: 100vh;
+  height: auto;
+  box-sizing: border-box !important;
+  
+}
+
+.row, .container-fluid{
+  width: 100% !important;
+  margin: 0px !important;
+  padding: 0px !important;
+}
+.navbar{
+  background-color: rgb(51,0,115);
+  box-sizing: border-box;
+  position: sticky;
+  top: 0px;
+  z-index: 10;
+  padding: 0px !important;
+  margin: 0px !important;
+  height: 50px;
+}
+
+.icon{
+  background-color: rgb(67,0,177);
+  color: white;
+  column-gap: 5px;
+  font-size:1.25rem;
+  height: 100%;
+}
+
+.vl {
+  border-left: 6px solid white;
+  height: 20px;
+  width: 1px;
+  border-radius: 20px;
+}
+
+
+.shape{
+  flex:1;
+  font-size:3rem;
+  height:100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bs-indigo);
+}
+
+.shape i{
+  flex:1;
+  text-align: center;
+}
+
+.green{
+  color:chartreuse
+}
+
+.yellow{
+  color:var(--bs-yellow);
+}
+
+.cyan{
+  color:cyan;
+}
+
+.purple{
+  color:purple
+}
