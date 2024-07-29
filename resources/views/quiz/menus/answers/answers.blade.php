@@ -30,6 +30,20 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        body {
+            animation: fadeInAnimation ease 1s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
         h1 {
             font-size: 2.5em;
             color: #fff;
@@ -240,10 +254,11 @@
     </style>
 </head>
 <body>
+<div class="scrolling-image"></div>
     <div class="container-fluid box-shadow ">
         <div class="col-12" style="padding:5vh 3vw 0vw 3vw;display:flex;flex-direction:column;align-items:center;">
             <div class="nav-container">
-            <a href="javascript:history.back()" class="btn-nav"><i class="fa-solid fa-chevron-left "></i></a>
+            <a href="{{URL::previous()}}" class="btn-nav"><i class="fa-solid fa-chevron-left "></i></a>
             </div>
                 <div class="table-name" style="padding:0vw 3vw 0vw 3vw;display:flex;flex-direction:column;align-items:center;">
                     Answers to this question
@@ -277,7 +292,7 @@
                                 <input name="answerId" value="{{$result->answerId}}" hidden>
                                 <input name="initialEvaluation" value="{{$result->evaluation}}" hidden>
                             </div>
-                            @if (Session::get('user')->privilege === "admin")
+                            @if ($isAdmin)
                             <div class="control">
                                 <button type="submit"><i class="fa fa-exchange" aria-hidden="true"></i></button>
                             </div>
@@ -305,7 +320,7 @@
                                     <input name="answerId" value="{{$result->answerId}}" hidden>
                                     <input name="initialEvaluation" value="{{$result->evaluation}}" hidden>
                                 </div>
-                                @if (Session::get('user')->privilege === "admin")
+                                @if ($isAdmin)
                                 <div class="control">
                                     <button type="submit"><i class="fa fa-exchange" aria-hidden="true"></i></button>
                                 </div>
@@ -314,7 +329,7 @@
                         @endif
                     @endforeach
                 @endif
-                @if (isset($results) && count($results) > 0)
+                @if (isset($results) && count($results) < 0)
                     <div class="text-dark table-row h1">No one was able to answer</div>
                 @endif
                 </div>

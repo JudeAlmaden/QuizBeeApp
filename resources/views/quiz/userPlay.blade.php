@@ -35,6 +35,20 @@
             text-align: center;
         }
 
+        body {
+            animation: fadeInAnimation ease 1s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
         body{
             background-attachment: fixed; /* Fix the image so it doesn't move */
             background-position: center; /* Center the background image */
@@ -242,6 +256,7 @@
     </style>
 </head>
 <body>
+    <div class="scrolling-image"></div>
     <div class="container-fluid box-shadow">
         <div class="row" >
             <!-- Question board -->

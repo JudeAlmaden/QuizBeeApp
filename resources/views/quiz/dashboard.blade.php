@@ -36,6 +36,19 @@
             text-align: center;
         }
 
+        .content-area {
+            animation: fadeInAnimation ease 1.5s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
 
         .wrapper{
             height: 75%;
@@ -108,6 +121,7 @@
     </style>
 </head>
 <body>
+    <div class="scrolling-image"></div>
     <div class="container-fluid box-shadow">
         <!--Top navbar  -->
         <div class="navbar row col-12 d-flex align-items-baseline">
@@ -154,7 +168,7 @@
                     <hr>
                 </div>
             </div>
-            <div class="col-sm-10 col-md-10 col-xl-10 py-3 ">
+            <div class="col-sm-10 col-md-10 col-xl-10 py-3 content-area">
                 <div class="row">
                     <!-- Content Area -->
                     <div class="col-12">

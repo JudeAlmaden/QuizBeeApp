@@ -35,7 +35,7 @@
             color: #fff;
             text-align: center;
         }
-
+        
         .table-head{
             background-color: rgb(50,0,115);
             border-radius: 20px 20px 0px 0px;
@@ -125,6 +125,7 @@
     </style>
 </head>
 <body>
+<div class="scrolling-image"></div>
     <div class="container-fluid box-shadow">
         <!--Top navbar  -->
         <div class="navbar row col-12 d-flex align-items-baseline">
@@ -157,7 +158,7 @@
                     <hr>
                 </div>
             </div>
-            <div class="col-sm-10 col-md-10 col-xl-10 py-3 ">
+            <div class="col-sm-10 col-md-10 col-xl-10 py-3 content-area">
                 <div class="row p-5">
                     <!-- Content Area -->
                     <div class="col-12 table">

@@ -32,12 +32,20 @@ div{
 body{
   margin: 0px !important;
   padding:  0px !important;
-  background-image: url('../images/question-marks.png');
+  /* background-image: url('../images/question-marks.png'); */
   background-size: contain;
   min-height: 100vh;
   height: auto;
   box-sizing: border-box !important;
-  
+}
+
+.scrolling-image{
+  background-image: url('../images/question-marks.png');
+  position: fixed;
+  z-index: -1;
+  width: 200vw;
+  min-height: 100vh;
+  animation: slide 100s linear infinite;
 }
 
 .row, .container-fluid{
@@ -102,4 +110,13 @@ body{
 
 .purple{
   color:purple
+}
+
+@keyframes slide {
+  0% {
+    transform: translate(0);
+  }
+  100% {
+    transform: translate(-100vw); /* The image width */
+  }
 }

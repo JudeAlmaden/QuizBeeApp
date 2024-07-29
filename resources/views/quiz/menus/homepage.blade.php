@@ -85,6 +85,7 @@
     </style>
 </head>
 <body>
+<div class="scrolling-image"></div>
     <div class="container-fluid box-shadow">
         <!--Top navbar  -->
         <div class="navbar row col-12 d-flex align-items-baseline">

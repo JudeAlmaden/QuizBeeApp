@@ -30,6 +30,15 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
         h1 {
             font-size: 2.5em;
             color: #fff;
@@ -44,6 +53,9 @@
             width: 100%;
             justify-content: flex-end;
             text-align: center;
+            animation: fadeInAnimation ease 3s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
         }
         
         /* profile */
@@ -248,11 +260,12 @@
     </style>
 </head>
 <body>
+<div class="scrolling-image"></div>
     <div class="container-fluid box-shadow">
         <div class="row" id="podium-wrapper">
         <a href="javascript:history.back()" class="btn-nav"><i class="fa-solid fa-chevron-left "></i></a>
         @if (isset($results) && count($results) > 0)
-            <div class="col-12 d-flex no-gutters" style="padding:3vh 10vw 3vh 10vw; height:90vh;">
+            <div class="col-12 d-flex no-gutters" style="padding:3vh 10vw 3vh 10vw; height:90vh; align-items:center; justify-content:center">
                 @foreach ( $results as $result )
                     @if( $loop->index == 1 )
                         <div class="col-4 podium" style="order:1">
@@ -321,11 +334,9 @@
                 @endforeach       
             </div>
         </div>
+
         <div class="row">
-            <div class="col-12 d-flex" id="bottom-nav">
-                <button class="nav-button"><i class="fa-solid fa-angles-down"></i></button>
-            </div>
-            <div class="col-12" style="padding:0vw 3vw 0vw 3vw;display:flex;flex-direction:column;align-items:center;">
+            <div class="col-12" style="padding:0vw 3vw 0vw 3vw;margin-top: 50px; display:flex; flex-direction:column; align-items:center; min-height:100vh">
                 <div class="table-name" style="padding:0vw 3vw 0vw 3vw;display:flex;flex-direction:column;align-items:center;">
                     Leaderboard
                     <div class="table-headers ">
@@ -334,7 +345,7 @@
                         <div class="" style="flex:2">Points</div>
                     </div>
                 </div>
-                <div class="table">
+                <div class="table" style="min-height:80vh">
                     @foreach ( $results as $result )
                         @if( $loop->index == 0 )
                         <div class="table-row gold">

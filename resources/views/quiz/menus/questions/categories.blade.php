@@ -30,6 +30,7 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
+
         h1 {
             font-size: 2.5em;
             color: #fff;
@@ -99,6 +100,7 @@
     </style>
 </head>
 <body>
+<div class="scrolling-image"></div>
     <div class="container-fluid box-shadow">
         <!--Top navbar  -->
         <div class="navbar row col-12 d-flex align-items-baseline">
@@ -132,7 +134,7 @@
                     <hr>
                 </div>
             </div>
-            <div class="col-sm-10 col-md-10 col-xl-10 py-3 ">
+            <div class="col-sm-10 col-md-10 col-xl-10 py-3 content-area">
                 <div class="row p-5">
                     <!-- Content Area -->
                     <div class="col-12 table">

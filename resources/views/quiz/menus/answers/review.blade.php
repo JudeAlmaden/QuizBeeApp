@@ -31,6 +31,7 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
+        
         h1 {
             font-size: 2.5em;
             color: #fff;
@@ -90,9 +91,24 @@
             color: grey;
         }
 
+        body {
+            animation: fadeInAnimation ease 1s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
     </style>
 </head>
 <body>
+<div class="scrolling-image"></div>
     <div class="container-fluid box-shadow">
         <!--Top navbar  -->
         <div class="col-12 p-5">

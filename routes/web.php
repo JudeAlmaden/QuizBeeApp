@@ -47,7 +47,7 @@ Route::get('/quiz/{quizId}/play', [GameController::class,'playQuiz']) //change t
 Route::get('/quiz/{quizId}/player',[GameController::class, 'playerPlay'])
     ->middleware('check.user.session')->name('player.play');
 Route::post('/quiz/answer/submit',[GameController::class, 'submitAnswer'])
-    ->middleware('checkprivilege:user')
+    ->middleware('check.user.session')
     ->name('player.answer.submit');
 
 
@@ -100,9 +100,8 @@ Route::delete('/quiz/{quizId}/category/{categoryId}/question/{questionId}',[Ques
 Route::get('/quiz/{quizId}/review/{questionId}', [QuizController::class, 'viewPlayerAnswers']) 
     ->middleware('check.user.session')
     ->name('answers.review');    
-Route::POST('/quiz/{quizId}/review/',[QuizController::class, 'toggleEvaluaton']) 
+Route::POST('/quiz/review/',[QuizController::class, 'toggleEvaluaton']) 
     ->middleware('check.user.session')
-    ->middleware('checkprivilege')
     ->name('answers.review.toggle'); 
 
 //Teams

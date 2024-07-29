@@ -23,12 +23,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
+        
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            animation: fadeInAnimation ease 1s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
+        }
+        @keyframes fadeInAnimation {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
 
         h1 {
@@ -176,7 +191,7 @@
             height: 100%;
             min-width: 75px;
             font-size: 30px;
-            transition: .5s;
+            /* transition: .5s; */
         }
 
         /* For selection */
@@ -186,7 +201,7 @@
         }
 
         .btn-stop{
-            transition:1s;
+            /* transition:1s; */
         }
 
         .btn-reveal:disabled, .btn-stop:disabled, .nav-button:disabled {
@@ -309,6 +324,7 @@
     </style>
 </head>
 <body>
+<div class="scrolling-image"></div>
     <div class="container-fluid box-shadow">
         <div class="row" >
             <!-- Question board -->
@@ -437,9 +453,9 @@
                     </button>
 
                     <!-- See answer of players on this question -->
-                    <a href="{{ route('questions.review', $quizId) }}" id="reviewAnswers" class="nav-button" title="See Player Answers" disabled>
+                    <button onclick="location.href='{{ route('answers.review', [$quizId, $currentQuestion->id]) }}'" class="nav-button" id="reviewAnswers" title="See Player Answers" disabled>
                         <i class="fa-solid fa-clipboard-question"></i>
-                    </a>
+                    </button>
                 @endif
                     <!--To Check leaderboard  -->
                     <a href="{{route('leaderboards.view', $quizId)}}" class="ml-auto nav-button" title="Check Leaderboards">
@@ -478,10 +494,12 @@
         .then(data => {
             if (data.isAccepting === "True") {
                 btnReveal.disabled = true;
+                btnReview.disabled=true;
                 btnStop.style.color = "red";
                 btnStop.title = "Stop accepting answers"
             } else {
                 btnReveal.disabled = false;
+                btnReview.disabled=false;
                 btnStop.style.color = "white"
                 btnStop.title = "Allow answers"
             }

@@ -72,7 +72,7 @@ class QuizController extends Controller
         //use quiz id to relate it touser
         $userId = Session::get('user')->id; 
         DB::table('user_quiz_rel')->insert(
-            ['user' => $userId, 'quiz' => $quizId, 'relation' => 'creator'] 
+            ['user' => $userId, 'quiz' => $quizId, 'relation' => 'Creator'] 
         );
 
         //go back to homepage
@@ -85,7 +85,7 @@ class QuizController extends Controller
             return redirect()->route('index');
         }
 
-        //et the relation of user to the quiz
+        //get the relation of user to the quiz
         $result = DB::table('user_quiz_rel')
         ->join('quizzes', 'user_quiz_rel.quiz', '=', 'quizzes.id')
         ->where('user_quiz_rel.user', Session::get('user')->id)
@@ -96,15 +96,11 @@ class QuizController extends Controller
         // Get quiz data for side nav
         $quiz = DB::table('quizzes')->where('id', $quizId)->first();
         
-        // If there is no results
-        if (is_null($quiz)) {
-            return redirect()->route('index');
-        }
-        else if($result->relation == 'creator'){
+        if($result->relation == 'Creator'){
             return view('/quiz/dashboard', ['quiz' => $quiz]);
         }
-        else if($result->relation == 'player'){
-            return redirect()->route('playQuiz', $quizId);
+        else if($result->relation == 'Player'){
+            return redirect()->route('quiz.play', $quizId);
         }else{
             return redirect()->route('homepage');
         }
@@ -228,7 +224,20 @@ class QuizController extends Controller
         ->orderBy('answer_history.created_at')
         ->get();
     
-        return view('/quiz/menus/answers/answers' , ['results' => $results, 'quizId' =>$quizId]);
+        $isAdmin = DB::table('user_quiz_rel')
+        ->join('quizzes', 'user_quiz_rel.quiz', '=', 'quizzes.id')
+        ->where('user_quiz_rel.user', Session::get('user')->id)
+        ->where('quizzes.id', $quizId)
+        ->select('user_quiz_rel.relation')
+        ->first();
+
+        if (!$isAdmin || $isAdmin->relation !== "Creator") {
+            $isAdmin=false;
+        }else{
+            $isAdmin=true;
+        }
+
+        return view('/quiz/menus/answers/answers' , ['results' => $results, 'quizId' =>$quizId, 'isAdmin' => $isAdmin]);
     }
 
     

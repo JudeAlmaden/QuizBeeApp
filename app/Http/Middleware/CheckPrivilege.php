@@ -29,7 +29,7 @@ class CheckPrivilege
             ->select('user_quiz_rel.relation')
             ->first();
 
-        if (!$result || $result->relation !== "creator") {
+        if (!$result || $result->relation !== "Creator") {
             return redirect()->route('homepage');
         }
 
