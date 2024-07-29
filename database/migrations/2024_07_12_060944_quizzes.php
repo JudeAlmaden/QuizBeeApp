@@ -15,7 +15,8 @@ return new class extends Migration
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name');
-            $table->string('description');
+            $table->string('code');
+            $table->string('description')->unique();
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

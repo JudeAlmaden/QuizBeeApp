@@ -29,31 +29,33 @@ class QuizController extends Controller
 
     public function joinQuiz(Request $request){
         $request->validate([
-            'quizId' => 'required'
+            'code' => 'required'
         ]);
-
-        //Check if user has prior relation to quiz
-        $exists = DB::table('user_quiz_rel')
-        ->where('user', Session::get('user')->id)
-        ->where('quiz', $request -> input('quizId'))
-        ->exists();
-
         //Check if the quiz exist
-        $quizExists=DB::table('quizzes')
-        ->where('id', $request -> input('quizId'))
-        ->exists();
+        $quiz=DB::table('quizzes')
+        ->where('code', $request -> input('code'))
+        ->first();
 
-        if($exists){
-            return redirect()->back()->with('status', 'Already applied');
-        }
+        if($quiz){
+            //Check if user has prior relation to quiz
+            $exists = DB::table('user_quiz_rel')
+            ->where('user', Session::get('user')->id)
+            ->where('quiz', $quiz->id)
+            ->exists();
 
-        if($quizExists){
-            DB::table('user_quiz_rel')->insert([
-                'user' => Session::get('user')->id, 
-                'quiz' =>  $request -> input('quizId') ,
-                'relation' => 'Pending',
-            ]);
-            return redirect()->back()->with('status', 'Successfully applied');
+            if(!$exists){
+                DB::table('user_quiz_rel')->insert([
+                    'user' => Session::get('user')->id, 
+                    'quiz' =>  $quiz->id ,
+                    'relation' => 'Pending',
+                ]);
+
+                return redirect()->back()->with('status', 'Successfully applied');
+
+            }else{
+                return redirect()->back()->with('status', 'Already applied');
+
+            }
         }else{
             return redirect()->back()->with('status', 'Invalid id');
         }
@@ -64,9 +66,11 @@ class QuizController extends Controller
             'description' => 'required',
         ]);
 
+        $code = $this->generateRandomString();
+
         //Insert to database and get the quiz id
         $quizId = DB::table('quizzes')->insertGetId(
-            ['name' => $request->input('name'), 'description' => $request->input('description')]
+            ['name' => $request->input('name'), 'description' => $request->input('description'), 'code'=> $code]
         );
 
         //use quiz id to relate it touser
@@ -79,6 +83,18 @@ class QuizController extends Controller
         return redirect()->route('homepage');
     }
 
+    public function generateRandomString() {
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+    
+        for ($i = 0; $i < 7; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+    
+        return $randomString;
+    }
+    
     public function viewQuiz($quizId){
         // If not found redirect to index/homepage
         if (!isset($quizId) || !is_numeric($quizId)) {

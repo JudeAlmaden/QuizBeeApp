@@ -207,7 +207,7 @@
                             <div class="flashcard-info text-light p-0" style="display:flex;flex-direction:row;flex-wrap:nowrap;height:auto">
                                     @if (isset($quiz))
                                         <div style="flex:9;padding:15px">
-                                            <div><strong>{{ $quiz -> name}}</strong></div>
+                                            <div><strong>{{ $quiz -> name}}</strong> - Code: {{$quiz->code}}</div>
                                             <div>{{ $quiz ->description}}</div>
                                         </div>
                                         <div style="flex:1;display:flex; justify-content: end; align-items: center; padding-right: 30px;">

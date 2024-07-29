@@ -149,6 +149,7 @@
     </style>
 </head>
 <body class="h-100">
+<div class="scrolling-image"></div>
     <div class="container h-100">
         <div class="row justify-content-md-center  align-items-center min-vh-100">
             <div class="col-12 col-md-8 col-lg-6 wrapper">

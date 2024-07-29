@@ -230,8 +230,8 @@
                                     <form method="post" action="{{route('quiz.join')}}">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="quizId" class="col-form-label" >Quiz Id:</label>
-                                        <input type="text" class="form-control" id="quizId" name="quizId" required>
+                                        <label for="quizId" class="col-form-label" >Quiz Code:</label>
+                                        <input type="text" class="form-control" id="code" name="code" required>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
