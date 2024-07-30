@@ -200,18 +200,18 @@
                         @endif
                         
                         <!-- Flashcard for making Joining a Quiz -->
-                        <div class="flashcard d-flex flex-column flex-nowrap  gx-2">
+                        <div class="flashcard d-flex flex-column flex-nowrap gx-2">
                             <div data-toggle="modal" data-target="#modalJoin" class="d-flex flex-column flex-wrap col-12"  data-toggle="modal" data-target="#exampleModal" style="display:flex; justify-content: center; align-items: center; flex-direction:row">
-                                <div><i class="fa-solid fa-plus text-light" style="font-size:10rem"></i></div>
-                                <div class="h3 text-light">Join Quiz</div>                                      
+                                <div><i class="fa-solid fa-plus text-light" style="flex:1; font-size:5rem"></i></div>
+                                <div class="h3 text-light text-center">Join Quiz</div>                                    
                             </div>
                         </div>
                         
                         <!-- Flashcard for making Joining Creating a Quiz -->
                         <div class="flashcard d-flex flex-column flex-nowrap gx-5">
                             <div data-toggle="modal" data-target="#modalNew" class="d-flex flex-column flex-wrap "  data-toggle="modal" data-target="#exampleModal" style="flex:1;display:flex; justify-content: center; align-items: center; flex-direction:row">
-                                <div><i class="fa-solid fa-plus text-light" style="font-size:10rem"></i></div>
-                                <div class="h3 text-light">New Quiz</div>                                      
+                                <div><i class="fa-solid fa-plus text-light" style="flex:1; font-size:5rem"></i></div>
+                                <div class="h3 text-light text-center">New Quiz</div>                                      
                             </div>
                         </div>
                     </div>

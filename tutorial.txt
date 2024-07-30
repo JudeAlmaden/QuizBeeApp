@@ -1,1 +1,28 @@
-Database>Migrations for creating tables
+applications needed
+
+Composer
+Xampp
+
+====================================================
+
+Setup accounts 
+
+Database>seeders>databaseSeeder
+
+Run migration without clearing data
+php artisan db:seed
+
+Reseeding database and clearing data
+php artisan migrate:fresh --seed
+
+=====================================================
+
+To run the application, enter the command via cmd
+php artisan serve --host=0.0.0.0 --port=8000 
+
+=====================================================
+
+Reseeding database and clearing data
+php artisan migrate:fresh --seed
+
+

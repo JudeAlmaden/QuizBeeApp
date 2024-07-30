@@ -45,7 +45,7 @@ body{
   z-index: -1;
   width: 200vw;
   min-height: 100vh;
-  animation: slide 100s linear infinite;
+  animation: slide 300s linear infinite;
 }
 
 .row, .container-fluid{
@@ -53,6 +53,7 @@ body{
   margin: 0px !important;
   padding: 0px !important;
 }
+
 .navbar{
   background-color: rgb(51,0,115);
   box-sizing: border-box;

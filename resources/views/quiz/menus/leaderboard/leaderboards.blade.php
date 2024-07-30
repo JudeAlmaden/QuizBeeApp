@@ -379,7 +379,11 @@
                     @endforeach
                 </div>
                 @else
-                    <di class="col-12 bg-light h1 p-2 text-center">No results yet</div>
+                <div class="col-12" style="padding:0vw 3vw 0vw 3vw;margin-top: 50px; display:flex; flex-direction:column; align-items:center; min-height:100vh">
+                    <div class="table-name" style="padding:0vw 3vw 0vw 3vw;display:flex;flex-direction:column;align-items:center;">
+                    No results yet :(
+                    </div>
+                </div>
                 @endif
             </div>
         </div>
