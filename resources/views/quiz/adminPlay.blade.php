@@ -66,9 +66,6 @@
             color: inherit !important;
         }
 
-        i{
-
-        }
         #board {
             border-radius: 20px;
             background-color: rgba(55, 5, 145, 0.90);
@@ -422,7 +419,7 @@
         <div class="row">
             <div class="col-12 d-flex" id="bottom-nav">
 
-                <button class="nav-button"> <a href=" {{route('quiz.view', $quizId)}}"><i class="fa-solid fa-chevron-left"></i></a></button>
+                <button class="nav-button"> <a href=" {{route('quiz.view', $quizId)}}" style="width:100%; height: 100%;"><i class="fa-solid fa-chevron-left"></i></a></button>
                 <div class="controls" style="height:100%">
                     @if (!isset($currentQuestion))
                         <form action="{{route('quiz.play.question.get',$quizId)}}" method="POST" style="padding:0px" style="height:100%">

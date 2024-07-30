@@ -401,7 +401,7 @@
         <!-- Navigation -->
         <div class="row">
             <div class="col-12 d-flex" id="bottom-nav">
-                <a class="nav-button" href="{{route('homepage')}}" style="display:flex;align-items:center; justify-content:center;text-decoration:none;"><i class="fa-solid fa-chevron-left"></i></a>
+                <a class="nav-button" href="{{route('homepage')}}" style="display:flex;align-items:center; justify-content:center;text-decoration:none;height:100%; width100%"><i class="fa-solid fa-chevron-left"></i></a>
                 <a class="ml-auto nav-button" href="{{route('leaderboards.view',$quizId)}}"><i class="fa-solid fa-ranking-star"></i></a>
                 <a class="nav-button" href="{{ route('questions.review', $quizId) }}"><i class="fa-solid fa-clipboard-question"></i></a>
             </div>
