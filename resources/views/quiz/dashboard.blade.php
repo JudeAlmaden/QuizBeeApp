@@ -180,28 +180,6 @@
                                             style="border:none;background:transparent;position:absolute;right:30px;top:10px">
                                             <i class="fa-solid fa-trash text-danger h4"></i>
                                     </button>
-                                    <!-- Modal for  Delete confirmation -->
-                                    <div class="modal fade text-dark" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Are you sure you want to delete <span id="category-name"></span>?</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <form id="deleteQuiz" action="{{route('quiz.delete',$quiz->id)}}" method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary" id="confirm-delete-button">Confirm</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 <img  src="https://canopylab.com/wp-content/uploads/2023/01/Blog-Creating-multiple-choice-quizzes-with-the-CanopyLAB-Quiz-engine.jpg"  alt="image">
                             </div>
                             <div class="flashcard-info text-light p-0" style="display:flex;flex-direction:row;flex-wrap:nowrap;height:auto">
@@ -238,6 +216,27 @@
                         </a>
                     </div>
                 </div>            
+            </div>
+        </div>
+    <!-- Modal for  Delete confirmation -->
+        <div class="modal fade text-dark" id="confirmDeleteModal" tabindex="-1" role="dialog" >
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Are you sure you want to delete <span id="category-name"></span>?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-footer">
+                        <form id="deleteQuiz" action="{{route('quiz.delete',$quiz->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="confirm-delete-button">Confirm</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
