@@ -29,17 +29,23 @@
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
         }
+
         h1 {
             font-size: 2.2em;
             color: #fff;
             text-align: center;
         }
 
-        body {
-            animation: fadeInAnimation ease 1s;
-            animation-iteration-count: 1;
-            animation-fill-mode: forwards;
+        a{
+            text-decoration: none !important;
+            color: inherit;
         }
+
+        a:hover{
+            color: inherit !important;
+        }
+
+
         @keyframes fadeInAnimation {
             0% {
                 opacity: 0;
@@ -51,7 +57,10 @@
 
         body{
             background-attachment: fixed; /* Fix the image so it doesn't move */
-            background-position: center; /* Center the background image */
+            background-position: center; /* Center the background image */       
+            animation: fadeInAnimation ease 1s;
+            animation-iteration-count: 1;
+            animation-fill-mode: forwards;
         }
 
         #board {
@@ -66,14 +75,15 @@
             animation: animate 10s infinite;
             }
 
+
         @keyframes animate {
             0% {
                 height: 55vh;
                 margin: 4.5vh -.5vw  .5vh -.5vw ;
             }
             50% {
-                height: 56vh;
-                margin: 3.5vh 0 .5vh 0 ;
+                height: 55vh;
+                margin: 4.5vh 0 .5vh 0 ;
             }
             100% {
                 height: 55vh;
@@ -391,7 +401,7 @@
         <!-- Navigation -->
         <div class="row">
             <div class="col-12 d-flex" id="bottom-nav">
-                <a class="nav-button" href="{{route('homepage')}}" style="display:flex;align-items:center; justify-content:center;text-decoration:none"><i class="fa-solid fa-chevron-left"></i></a>
+                <a class="nav-button" href="{{route('homepage')}}" style="display:flex;align-items:center; justify-content:center;text-decoration:none;"><i class="fa-solid fa-chevron-left"></i></a>
                 <a class="ml-auto nav-button" href="{{route('leaderboards.view',$quizId)}}"><i class="fa-solid fa-ranking-star"></i></a>
                 <a class="nav-button" href="{{ route('questions.review', $quizId) }}"><i class="fa-solid fa-clipboard-question"></i></a>
             </div>

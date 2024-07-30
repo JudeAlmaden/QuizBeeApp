@@ -12,6 +12,7 @@ class QuestionsController extends Controller
         }
 
         $categories = $this->getCategories($quizId);
+
         return view("/quiz/menus/questions/categories",['quizId' => $quizId,'categories' => $categories]);
     }
 

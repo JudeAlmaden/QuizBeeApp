@@ -59,8 +59,16 @@
 
         a{
             text-decoration: none !important;
+            color: inherit;
         }
 
+        a:hover{
+            color: inherit !important;
+        }
+
+        i{
+
+        }
         #board {
             border-radius: 20px;
             background-color: rgba(55, 5, 145, 0.90);
@@ -70,7 +78,7 @@
             justify-content: center;
             align-items: center;
             box-shadow: rgba(0, 0, 0, 0.5) 0px 0px 30px;
-            animation: animate 1s infinite;
+            animation: animate 3s infinite;
             }
 
         @keyframes animate {
@@ -79,8 +87,8 @@
                 margin: 4.5vh -.5vw  .5vh -.5vw ;
             }
             50% {
-                height: 56vh;
-                margin: 3.5vh 0 .5vh 0 ;
+                height: 55vh;
+                margin: 4.5vh 0 .5vh 0 ;
             }
             100% {
                 height: 55vh;

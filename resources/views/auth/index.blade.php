@@ -37,12 +37,27 @@
             height: 500px;
             box-shadow: 0 0 60px #000;
             border-radius: 10px;
+            animation: appear 2s linear forwards;
         }
+
+        @keyframes appear{
+            0%    { 
+                transform:translate(0,-5%) ;
+                opacity: 0; 
+            }
+
+            100%{
+
+                opacity: 1;
+            }
+        }
+
         h1 {
             font-size: 2.5em;
             color: #fff;
             text-align: center;
         }
+
         .input-group {
             position: relative;
             width: 100%;

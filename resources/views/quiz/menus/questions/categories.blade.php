@@ -189,7 +189,7 @@
                             <!-- Table item -->
                             @if (isset($categories) && $categories->count() > 0)
                                 @foreach ($categories->all() as $category)
-                                <div class="table-row px-5 py-2" title="{{$categories->description}}">
+                                <div class="table-row px-5 py-2" title="{{$category->description}}">
                                     <i class="deck-icon fa-solid fa-layer-group h1"></i>
                                     <div class="category-name">{{$category->name}}</div>
                                     <div class="button-container">
