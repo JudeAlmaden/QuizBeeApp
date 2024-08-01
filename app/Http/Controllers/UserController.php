@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function viewIndex(){
-        if (Session::has('user')) {
-            // return $this->getHome();
-        }
         return view('auth.index');
     }
 

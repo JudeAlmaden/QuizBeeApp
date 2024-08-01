@@ -40,6 +40,11 @@ Route::get('/quiz/{quizId}', [QuizController::class,'viewQuiz']) //change this l
     ->middleware('check.user.session')
     ->name('quiz.view');
 
+//
+Route::get('/quiz/{quizId}/return', [QuizController::class,'returnFromAnswers']) //change this later 
+    ->middleware('check.user.session')
+    ->name('quiz.returnFromAnswers');
+
 //User is redirected here if they are a player
 Route::get('/quiz/{quizId}/play', [GameController::class,'playQuiz']) //change this later 
     ->middleware('check.user.session')
@@ -49,7 +54,6 @@ Route::get('/quiz/{quizId}/player',[GameController::class, 'playerPlay'])
 Route::post('/quiz/answer/submit',[GameController::class, 'submitAnswer'])
     ->middleware('check.user.session')
     ->name('player.answer.submit');
-
 
 //Routes of quiz Dashboard
 Route::get('/quiz/{quizId}/play/admin', [GameController::class,'playQuizAsAdmin']) 

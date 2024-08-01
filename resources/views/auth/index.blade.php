@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Quizly</title>
+    <title>Quizzly</title>
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -37,11 +37,16 @@
             height: 500px;
             box-shadow: 0 0 60px #000;
             border-radius: 10px;
-            animation: appear 2s linear forwards;
+            animation: appear 3s linear forwards;
         }
 
         @keyframes appear{
             0%    { 
+                transform:translate(0,-5%) ;
+                opacity: 0; 
+            }
+
+            20%    { 
                 transform:translate(0,-5%) ;
                 opacity: 0; 
             }

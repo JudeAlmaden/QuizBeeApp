@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Quizly</title>
+    <title>Quizzly</title>
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -71,13 +71,14 @@
             aspect-ratio: 9/6;
             width: 40%;
             padding: 10px !important;
-            transition: 1s;
+            transition: .5s;
         }
 
         .flashcard:hover{
-            top:-20px;
+            margin-top:-10px;
             background-color: goldenrod;
         }
+
         .flashcard .image-container{
             border-radius: 30px;
             height: 75%;
@@ -135,7 +136,7 @@
         <!-- Sidebar -->
         <div class="row flex-nowrap no-gutters">
             <div class="col-auto col-sm-2 px-0 m-0">
-                <div class="d-flex flex-column align-items-center align-items-sm-start p-2 text-white overflow-hidden" 
+                <div class="side-nav d-flex flex-column align-items-center align-items-sm-start p-2 text-white overflow-hidden" 
                     style="
                     background: linear-gradient(180deg, rgba(56,2,144,1) 0%, rgba(61,13,140,1) 50%, rgba(33,5,80,1) 100%); 
                     position:sticky; 
@@ -154,8 +155,6 @@
                     <a href="/logout" class="d-flex align-items-center pb-3 mb-0 text-white text-decoration-none w-100" style="column-gap:5px;">
                         <i class="fa fa-sign-out" aria-hidden="true"></i></i><span class="fs-5 d-none d-sm-inline pb-0 pt-auto">Logout</span>
                     </a>
-                    <!-- Modal to Create members -->
-                    
                     <div class="bg-light w-100" style="height:2px"></div>
                     <!-- Navbar List -->
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100" id="menu">
@@ -216,6 +215,12 @@
                         </div>
                     </div>
 
+                    @if (session('status'))
+                    <div class="alert alert-success fade" style="position:fixed;width:100%; margin-top:10vh">
+                        {{ session('status') }}
+                    </div>
+                    @endif
+
                     <!-- Modal Form For Joining Quiz-->
                     <div class="modal fade" id="modalJoin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -275,11 +280,11 @@
                     </div>
                     
                     <!-- Modal For Members -->
-                    <div class="modal fade" id="modalMembers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="modalMembers" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Manage </h5>
+                                <h5 class="modal-title">Manage </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                                 </button>
@@ -299,12 +304,14 @@
                                                 <div class="member-input">
                                                     <input type="text" class="form-control" name="members[]"  value="{{$member->memberName}}" required>
                                                 </div>
-                                            @endif
+                                            @else
                                                 <div class="member-input">
                                                     <input type="text" class="form-control" name="members[]" value="{{$member->memberName}}" required>
                                                     <button type="button" class="btn btn-danger" onclick="removeMember(this)" >X</button>
                                                 </div>
+                                            @endif
                                         @endforeach
+
                                     </div>
                                     <button type="button" class="btn btn-secondary" onclick="addMember()">Add Member</button>
                                     <div class="modal-footer">
@@ -317,12 +324,6 @@
                     </div>
                 </div>
             </div>
-
-            @if (session('status'))
-            <div class="alert alert-success fade">
-                {{ session('status') }}
-            </div>
-            @endif
         </div>
     </div>
     </body>

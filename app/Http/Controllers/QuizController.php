@@ -255,7 +255,6 @@ class QuizController extends Controller
 
         return view('/quiz/menus/answers/answers' , ['results' => $results, 'quizId' =>$quizId, 'isAdmin' => $isAdmin]);
     }
-
     
     public function toggleEvaluaton(Request $request){
         $request->validate([
@@ -345,5 +344,23 @@ class QuizController extends Controller
         ->update(['relation' => 'Player']);
     
         return redirect()->back();
+    }
+
+    public function returnFromAnswers($quizId){
+        $result = DB::table('user_quiz_rel')
+        ->join('quizzes', 'user_quiz_rel.quiz', '=', 'quizzes.id')
+        ->where('user_quiz_rel.user', Session::get('user')->id)
+        ->where('quizzes.id', $quizId)
+        ->select('user_quiz_rel.relation')
+        ->first();
+
+        if($result->relation == 'Creator'){
+            return redirect()->route('quiz.playQuizAsAdmin', $quizId);
+        }
+        else if($result->relation == 'Player'){
+            return redirect()->route('quiz.play', $quizId);
+        }else{
+            return redirect()->route('homepage');
+        }
     }
 }

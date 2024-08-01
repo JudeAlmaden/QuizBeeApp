@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Quizly</title>
+    <title>Quizzly</title>
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -28,20 +28,6 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            animation: fadeInAnimation ease 1s;
-            animation-iteration-count: 1;
-            animation-fill-mode: forwards;
-        }
-        @keyframes fadeInAnimation {
-            0% {
-                opacity: 0;
-            }
-            100% {
-                opacity: 1;
-            }
         }
 
         h1 {
@@ -258,7 +244,7 @@
     <div class="container-fluid box-shadow ">
         <div class="col-12" style="padding:5vh 3vw 0vw 3vw;display:flex;flex-direction:column;align-items:center;">
             <div class="nav-container">
-            <a href="{{URL::previous()}}" class="btn-nav"><i class="fa-solid fa-chevron-left "></i></a>
+            <a href="{{ route('quiz.returnFromAnswers',$quizId)}}" class="btn-nav"><i class="fa-solid fa-chevron-left "></i></a>
             </div>
                 <div class="table-name" style="padding:0vw 3vw 0vw 3vw;display:flex;flex-direction:column;align-items:center;">
                     Answers to this question
