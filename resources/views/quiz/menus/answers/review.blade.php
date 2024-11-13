@@ -14,83 +14,58 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/css/app.css">
-    
-    
-    <!-- Metadata -->
-    <meta charset="UTF-8">
-    <meta name="description" content="Quizz Bee Application">
-    <meta name="keywords" content="Quiz">
-    <meta name="author" content="Justine Jude Almaden">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>/* Container for each question row */
+.table-row {
+    display: flex;                       /* Use flexbox for layout */
+    align-items: center;                /* Center items vertically */
+    padding: 15px;                      /* Padding around each row */
+    margin: 10px 0;                    /* Margin between rows */
+    background-color: #f9f9f9;         /* Light background color */
+    border: 1px solid #ddd;            /* Border around each row */
+    border-radius: 5px;                /* Rounded corners */
+    transition: background-color 0.3s; /* Transition effect for hover */
+}
 
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        h1 {
-            font-size: 2.5em;
-            color: #fff;
-            text-align: center;
-        }
+/* Change background color on hover */
+.table-row:hover {
+    background-color: #f1f1f1;         /* Slightly darker on hover */
+}
 
-        .table-head{
-            background-color: rgb(50,0,115);
-            border-radius: 20px 20px 0px 0px;
-            display: flex;
-            align-items: center;
-        }
+/* Style for question ID */
+.question-id {
+    flex: 0 0 80px;                    /* Fixed width for ID */
+    font-weight: bold;                 /* Bold text */
+    color: #333;                       /* Dark color */
+}
 
-        .return{
-            background-color: transparent;
-            color: white;
-            border: none;
-        }
+/* Style for the question text */
+.question {
+    flex: 1;                           /* Take remaining space */
+    padding: 0 15px;                  /* Horizontal padding */
+    color: #555;                       /* Medium color */
+}
 
-        .table-row{
-            width: 100%;
-            display: flex;
-            padding:10px;
-            flex-direction: row;
-            justify-content: center;
-            transition: .25s;
-            margin-bottom: 10px;
-            border: 1px grey solid;
-            border-radius: 5px;
-        }
+/* Style for the timestamp */
+.timestamp {
+    flex: 0 0 150px;                   /* Fixed width for timestamp */
+    color: #999;                       /* Lighter color */
+}
 
-        .table-row:hover{
-            background-color: grey;
-            color: white !important;
-        }
+/* Button styling */
+.btn-view {
+    padding: 10px 15px;                /* Padding for the button */
+    background-color: #007bff;        /* Bootstrap primary color */
+    color: white;                      /* Text color */
+    border: none;                      /* No border */
+    border-radius: 5px;               /* Rounded corners */
+    cursor: pointer;                   /* Pointer cursor */
+    transition: background-color 0.3s; /* Transition effect */
+}
 
-        .question-id{
-            flex:1;
-            padding-left: 10px;
-        }
-
-        .question{
-            flex:3
-        }
-
-        .timestamp{
-            flex:1
-        }
-
-        .btn-view{
-            flex:1;
-            text-decoration: underline;
-            border: none;
-            background-color: transparent;
-        }
-        .return{
-            color: grey;
-        }
-
+/* Change button color on hover */
+.btn-view:hover {
+    background-color: #0056b3;        /* Darker blue on hover */
+}
 
     </style>
 </head>
@@ -103,9 +78,8 @@
                 <!-- Content Area -->
                 <div class="col-12 table p-5">
                     <!-- Table head -->
-                    <div class="table-head  h3 py-2 px-3 text-light">
-                        <a href="{{ route('quiz.view', $quizId) }}"class="return p-1 text-light mr-5"><i class="fa-solid fa-chevron-left"></i></a> 
-                        <div>Previous Questions</div>                    
+                    <div class="table-head  h3 py-2 px-3 text-light bg-dark">
+                        <div><a href="{{ route('quiz.view', $quizId) }}"class="return p-1 text-light mr-5"><i class="fa-solid fa-chevron-left"></i></a> Previous Questions</div>                    
                     </div>
                     <!-- Table content area -->
                     <div class="py-4 bg-light" style="min-height:70vh;">

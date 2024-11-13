@@ -103,6 +103,7 @@
         a{
             text-decoration: none !important;
         }
+
         @keyframes fade-anim{
             0%    { 
                 opacity: 0; 
@@ -120,6 +121,7 @@
                 opacity: 0;
             }
         }
+
     </style>
 </head>
 <body>
@@ -134,6 +136,7 @@
             </div>    
         </div>
         <!-- Sidebar -->
+
         <div class="row flex-nowrap no-gutters">
             <div class="col-auto col-sm-2 px-0 m-0">
                 <div class="side-nav d-flex flex-column align-items-center align-items-sm-start p-2 text-white overflow-hidden" 
@@ -145,8 +148,8 @@
                     z-index:9;
                     height:calc(100vh - 50px)
                     ">
-                    <!-- Permanent content -->
-                    <a href="/" class="d-flex align-items-center pb-3 mb-0 text-white text-decoration-none w-100" style="column-gap:5px;">
+                    <!-- Permanent sidebar content -->
+                    <a href="{{route("homepage")}}" class="d-flex align-items-center pb-3 mb-0 text-white text-decoration-none w-100" style="column-gap:5px;">
                         <i class="fa-solid fa-house"></i><span class="fs-5 d-none d-sm-inline pb-0 pt-auto">Home</span>
                     </a>
                     <button data-toggle="modal" data-target="#modalMembers"  class="d-flex align-items-center pb-3 mb-0 text-white text-decoration-none w-100 " style="column-gap:5px; background-color:transparent !important; border:none">
@@ -181,7 +184,7 @@
                             <!-- Quiz -->
                             <a class="flashcard d-flex flex-column flex-nowrap gx-2" href="{{route('quiz.view',$quiz->id)}}">
                                 <div class="image-container">
-                                    <img src="https://canopylab.com/wp-content/uploads/2023/01/Blog-Creating-multiple-choice-quizzes-with-the-CanopyLAB-Quiz-engine.jpg"  alt="image">
+                                <img  src="/images/bg.jfif"  alt="image">
                                 </div>
                                 <div class="flashcard-info text-light p-0" style="display:flex;flex-direction:row;">
                                     <div style="flex:6;padding:10px;display:flex;flex-direction:column">

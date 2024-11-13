@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\test;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -116,24 +117,8 @@ Route::get('/quiz/{quizId}/team/approve/{id}', [QuizController::class, 'approveT
     ->middleware('check.user.session')
     ->name('team.approve');
 
-// // Quiz dashboard controls
-// //For questions and categories
-
-
-
-// Route::get('/quiz/{quizId}/teams', [QuizController::class,'viewTeams']) ->name('quiz.teams');
-// Route::get('/team/remove/{id}', [QuizController::class, 'removeTeam'])->name('team.remove');
-// Route::get('/team/approve/{id}', [QuizController::class, 'approveTeam'])->name('team.approve');
-
-// For playing (admin)
-// Route::get('/quiz/{quizId}/admin',[GameController::class, 'play'])->middleware('checkprivilege:admin')->name('admin.play');
 Route::post('/quiz/{quizId}/admin',[GameController::class, 'getQuestion'])->name('quiz.play.question.get');
 Route::get('/quiz/{quizId}/admin/deselect',[GameController::class, 'deselectQuestion'])->name('quiz.play.question.clear');
 
-// //for playing {player}
-// Route::get('/quiz/{quizId}/player',[GameController::class, 'playerPlay'])->middleware('checkprivilege:user')->name('player.play');
-// Route::post('/answer/submit',[GameController::class, 'submitAnswer'])->middleware('checkprivilege:user')->name('player.answer.submit');
-
-
-
+Route::get('/test', [test::class, 'test']);
 

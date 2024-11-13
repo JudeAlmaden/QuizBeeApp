@@ -400,7 +400,6 @@
 
         // Checks if the question on this device is same as one in db
         setInterval(() => {
-
             //Gets the current selected question
             fetch(`/api/currentQuestion/${quizId}`)
                 .then(response => {
@@ -421,6 +420,6 @@
                 .catch(error => {
                     console.error('There was a problem with the fetch operation:', error);
                 });
-        }, 5000);
+        }, 5500);
     });
 </script>

@@ -1,6 +1,6 @@
 <?php
-
 namespace App\Http\Controllers;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -32,7 +32,7 @@ class UserController extends Controller
         } else {
             // Redirect back to the index page with an error message
             return redirect()->route('index')->withErrors([
-                'Incorrect login credentials.'
+                'login' => 'Incorrect login credentials.'
             ]);
         }
     }

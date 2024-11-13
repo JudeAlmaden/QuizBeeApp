@@ -167,7 +167,7 @@
                                             style="border:none;background:transparent;position:absolute;right:30px;top:10px">
                                             <i class="fa-solid fa-trash text-danger h4"></i>
                                     </button>
-                                <img  src="https://canopylab.com/wp-content/uploads/2023/01/Blog-Creating-multiple-choice-quizzes-with-the-CanopyLAB-Quiz-engine.jpg"  alt="image">
+                                <img  src="/images/bg.jfif"  alt="image">
                             </div>
                             <div class="flashcard-info text-light p-0" style="display:flex;flex-direction:row;flex-wrap:nowrap;height:auto">
                                     @if (isset($quiz))

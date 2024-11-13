@@ -318,6 +318,7 @@
                 @if (isset($results) && count($results) < 0)
                     <div class="text-dark table-row h1">No one was able to answer</div>
                 @endif
+                </d>
                 </div>
             </div>
         </div>

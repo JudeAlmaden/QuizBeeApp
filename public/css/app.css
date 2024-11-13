@@ -121,3 +121,18 @@ body{
     transform: translate(-100vw); /* The image width */
   }
 }
+
+::-webkit-scrollbar {
+  width: 0.6rem;
+  background-color: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(
+      to bottom,
+      rgb(91, 76, 166), 
+      rgb(213, 162, 236), 
+      rgb(219, 201, 236)
+  );
+  border-radius: 10px; 
+}

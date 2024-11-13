@@ -152,11 +152,10 @@
                                 <div class="wrapper col-12 col-lg-6 p-2">
                                     <a class="flashcard d-flex flex-column flex-nowrap" href="{{ route('quiz.view', $quiz->id) }}">
                                         <div class="image-container">
-                                            <img src="https://canopylab.com/wp-content/uploads/2023/01/Blog-Creating-multiple-choice-quizzes-with-the-CanopyLAB-Quiz-engine.jpg"  alt="image">
+                                            <img src="/images/bg.jfif"  alt="image">
                                         </div>
                                         <div class="flashcard-info text-light p-0" style="display:flex;flex-direction:row;">
-                                            <div style="flex:6;padding:10px;display:flex;flex-direction:column">
-                                                <div style="flex:100%;box-sizing: border-box;">{{$quiz->name}}</div>
+                                            <div style="flex:6;padding:10px;display:flex;flex-direction:column">                                                <div style="flex:100%;box-sizing: border-box;">{{$quiz->name}}</div>
                                                 <div style="flex:100%;box-sizing: border-box;">{{$quiz->description}}</div>
                                             </div>
                                             <div style="flex:1;display:flex; justify-content: center; align-items: center; ">
