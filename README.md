@@ -7,3 +7,6 @@ php artisan migrate:fresh
 
 
 //View accounts on database>migrations>seeders
+
+
+//This project was made for our annual SBAT day celebration at school St.Anne College Lucena, Made and developed by Justien Jude D. Almaden
