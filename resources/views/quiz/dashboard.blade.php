@@ -117,6 +117,9 @@
                 <div class="vl"></div>
                 <i class="fa-solid fa-lightbulb" style="color:var(--bs-warning)"></i>
             </div>    
+            <div class="text-light text-right px-3">
+                By: Almaden, Justine Jude D. (BSIT-III)
+            </div>
         </div>
         <!-- Sidebar -->
         <div class="row flex-nowrap">

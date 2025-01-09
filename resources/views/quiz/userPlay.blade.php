@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/app.css">
+    @vite('resources/js/bootstrap.js')
     
     <!-- Metadata -->
     <meta charset="UTF-8">
@@ -253,23 +254,22 @@
     <div class="container-fluid box-shadow">
         <div class="row" >
             <!-- Question board -->
-            <div class="col-12" style="padding:0 4vw 0 4vw " id="quiz" value="{{$quizId}}">
-                    @if (isset($currentQuestion))
-                        <div class="text-center" id="board" >     
-                                <h1 class="font-italic text-light" id="question" value="{{$currentQuestion->id}}">   
-                                {{ $currentQuestion->format }} - {{ $currentQuestion->points }}pts
-                                <br>
-                                Question: {{ $currentQuestion->question }} 
-
-                            </h1>  
-                        </div>
+            <div class="col-12" style="padding: 0 4vw 0 4vw; position: relative;">
+                <div class="text-center" id="board" style="position: relative; z-index: 2;">
+                    <h1 class="font-italic">
+                        @if (isset($currentQuestion))
+                        {{ $currentQuestion->format }} - {{ $currentQuestion->points }}pts
+                        <br id="questionId" value="{{ $currentQuestion->id }}">
+                        Question: {{ $currentQuestion->question }} 
                         @else
-                        <div class="text-center" id="board" >  
-                            <h1 class="font-italic text-light" id="question" value="-1">   
-                                Waiting for next question
-                            </h1>
-                        </div>
-                    @endif                          
+                        Waiting for next question
+                        @endif   
+                    </h1>
+                </div>
+                
+                <!-- Centered Logo Image -->
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding:10%;">
+                    <img src="/images/sacliLogo.png" alt="Logo" style="width: 90%; max-height: 70%; min-height:70%">
                 </div>
             </div>
             <!-- Anaswer area -->
@@ -395,31 +395,61 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        const quizId = document.getElementById('quiz').getAttribute('value'); 
-        const questionId = document.getElementById('question').getAttribute('value');
+        const quizId = {{$quizId}};
 
-        // Checks if the question on this device is same as one in db
-        setInterval(() => {
-            //Gets the current selected question
-            fetch(`/api/currentQuestion/${quizId}`)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    console.log("received response");
-                    return response.json();
-                })
-                .then(data => {
-                    //Refresh page if there is an update
-                    if(data.id != questionId && data.id != undefined){
-                        location.reload(); 
-                    }else if(questionId != -1 && data.id == undefined){
-                        location.reload(); 
-                    }
-                })
-                .catch(error => {
-                    console.error('There was a problem with the fetch operation:', error);
-                });
-        }, 5500);
+
+
+        // // Checks if the question on this device is same as one in db
+        // setInterval(() => {
+        //     //Gets the current selected question
+        //     console.log("Sent request");
+        //     fetch(`{{ route('currentQuestion.get', ['quizId' => '__QUIZ_ID__']) }}`.replace('__QUIZ_ID__', quizId))
+        //         .then(response => {
+        //             if (!response.ok) {
+        //                 throw new Error('Network response was not ok');
+        //             }
+        //             console.log("received response");
+        //             return response.json();
+        //         })
+        //         .then(data => {
+        //             //Refresh page if there is an update
+        //             if(data.id != questionId && data.id != undefined){
+        //                 location.reload(); 
+        //             }else if(questionId != -1 && data.id == undefined){
+        //                 location.reload(); 
+        //             }
+        //         })
+        //         .catch(error => {
+        //             console.error('There was a problem with the fetch operation:', error);
+        //         });
+        // }, 10000);
+
+        
+        window.Echo.connector.pusher.connection.bind('connected', () => {
+            console.log('Echo connection established.');
+        });
+
+        window.Echo.connector.pusher.connection.bind('disconnected', () => {
+            console.log('Echo connection lost.');
+        });
+
+        window.Echo.connector.pusher.connection.bind('failed', () => {
+            console.log('Echo connection failed.');
+        });
+
+        // Subscribe to the channel and listen for all events
+        window.Echo.channel('CH1')
+        .listen('QuestionChangedByAdmin', (event) => {
+            location.reload();
+        });
+
+        window.Echo.channel('CH1')
+        .listen('AcceptingAnswersToggledByAdmin', (event) => {
+            if(event.data.isAccepting == "True"){
+                alert(`Accepting answers has been enabled.`);
+            }else{
+                alert(`Accepting answers has been disabled.`);
+            }
+        });
     });
 </script>

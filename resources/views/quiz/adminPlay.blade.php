@@ -315,12 +315,13 @@
     </style>
 </head>
 <body>
+
 <div class="scrolling-image"></div>
     <div class="container-fluid box-shadow">
         <div class="row" >
             <!-- Question board -->
-            <div class="col-12" style="padding:0 4vw 0 4vw " >
-                <div class="text-center" id="board">
+            <div class="col-12" style="padding: 0 4vw 0 4vw; position: relative;">
+                <div class="text-center" id="board" style="position: relative; z-index: 2;">
                     <h1 class="font-italic">
                         @if (isset($currentQuestion))
                         {{ $currentQuestion->format }} - {{ $currentQuestion->points }}pts
@@ -329,9 +330,15 @@
                         @else
                         Waiting for next question
                         @endif   
-                    </h1>   
+                    </h1>
+                </div>
+                
+                <!-- Centered Logo Image -->
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); padding:10%;">
+                    <img src="/images/sacliLogo.png" alt="Logo" style="width: 90%; max-height: 70%; min-height:70%">
                 </div>
             </div>
+
             <!-- Answwer area -->
             <div class="col-12" id="answer-area">
 
@@ -474,13 +481,13 @@
 
         const questionId = document.getElementById('questionId').getAttribute('value');
 
-        //Setup buttons
-        fetch(`/api/currentQuestion/view/${questionId}`)
+        //I have no clue what this does
+        fetch(`{{ route('currentQuestion.view', ['questionId' => '__QUESTION_ID__']) }}`.replace('__QUESTION_ID__', questionId))
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            return response.json(); // Ensure you're returning JSON
+            return response.json();
         })
         .then(data => {
             if (data.isAccepting === "True") {
@@ -499,10 +506,9 @@
             console.error('There was a problem with the fetch operation:', error);
         });
 
-        //Toggling, only allow revealing of answer when question is no longer accepting na
         btnStop.addEventListener('click', function() {
-            fetch(`/api/currentQuestion/toggleRequest/${questionId}`)
-                .then(response => {
+            fetch(`{{ route('currentQuestion.toggleRequest', ['questionId' => '__QUESTION_ID__', 'userId' => session('user')->id]) }}`.replace('__QUESTION_ID__', questionId))
+            .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }

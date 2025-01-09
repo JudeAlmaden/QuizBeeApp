@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\GameController;
-use App\Http\Controllers\test;
+use App\Events\AcceptingAnswersToggledByAdmin;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -119,6 +119,3 @@ Route::get('/quiz/{quizId}/team/approve/{id}', [QuizController::class, 'approveT
 
 Route::post('/quiz/{quizId}/admin',[GameController::class, 'getQuestion'])->name('quiz.play.question.get');
 Route::get('/quiz/{quizId}/admin/deselect',[GameController::class, 'deselectQuestion'])->name('quiz.play.question.clear');
-
-Route::get('/test', [test::class, 'test']);
-

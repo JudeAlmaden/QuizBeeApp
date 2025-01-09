@@ -45,14 +45,12 @@ class UserController extends Controller
     public function viewHomepage() {
         // Route to admin or user homepage
         $quizController = app(QuizController::class);
-        if (Session::get('user')->privilege === 'admin') {      //If user is of admin status
 
-        } else {
-            $members = DB::table('members')->where('user', Session::get('user')->id)->get();
-            $quizzes = $quizController->getQuizzesOf(Session::get('user')->id);
+        $members = DB::table('members')->where('user', Session::get('user')->id)->get();
+        $quizzes = $quizController->getQuizzesOf(Session::get('user')->id);
 
-            return view('user.homepage', ['quizzes' => $quizzes, 'members'=>$members]);
-        }
+        return view('user.homepage', ['quizzes' => $quizzes, 'members'=>$members]);
+        
     }
 
 

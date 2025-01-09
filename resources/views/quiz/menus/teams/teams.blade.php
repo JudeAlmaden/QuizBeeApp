@@ -130,10 +130,10 @@
                     height:calc(100vh - 50px)
                     ">
                     <!-- Permanent content -->
-                    <a href="/" class="d-flex align-items-center pb-3 mb-0 text-white text-decoration-none w-100" style="column-gap:5px;">
+                    <a href="{{route('homepage')}}" class="d-flex align-items-center pb-3 mb-0 text-white text-decoration-none w-100" style="column-gap:5px;">
                         <i class="fa-solid fa-house"></i><span class="fs-5 d-none d-sm-inline pb-0 pt-auto">Home</span>
                     </a>
-                    <a href="/logout" class="d-flex align-items-center pb-3 mb-0 text-white text-decoration-none w-100" style="column-gap:5px;">
+                    <a href="{{route('logout')}}" class="d-flex align-items-center pb-3 mb-0 text-white text-decoration-none w-100" style="column-gap:5px;">
                         <i class="fa fa-sign-out" aria-hidden="true"></i></i><span class="fs-5 d-none d-sm-inline pb-0 pt-auto">Logout</span>
                     </a>
                     <div class="bg-light w-100" style="height:2px"></div>

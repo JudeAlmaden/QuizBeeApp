@@ -1,20 +1,26 @@
-// vite.config.js
 import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
 import laravel from 'laravel-vite-plugin';
 
-// Export Vite configuration
 export default defineConfig({
     plugins: [
-        vue(),
         laravel({
-            input: ['resources/css/app.css', 'resources/js/app.js'],
+            input: ['resources/css/app.css', 'resources/js/app.js', 'resources/js/jquery.js',        'resources/js/bootstrap.js'],
             refresh: true,
         }),
-    ],
-    resolve: {
-        alias: {
-            'vue': 'vue/dist/vue.esm-bundler.js'
-        }
-    }
+    ],   
+    input: [
+        // rest of your inputs
+        'resources/js/app.js',
+        'resources/js/echo.js',
+        'resources/js/jquery.js',
+        'resources/js/bootstrap.js',
+    ],define: {
+    'process.env': {
+        VITE_REVERB_APP_KEY: process.env.VITE_REVERB_APP_KEY,
+        VITE_REVERB_HOST: process.env.VITE_REVERB_HOST,
+        VITE_REVERB_PORT: process.env.VITE_REVERB_PORT,
+        VITE_REVERB_SCHEME: process.env.VITE_REVERB_SCHEME,
+    },
+}
+
 });

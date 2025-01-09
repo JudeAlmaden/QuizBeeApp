@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Events\QuestionChangedByAdmin;
+use App\Events\AnswerToggledByAdmin;
 class GameController extends Controller
 {
     // Functions for the game itself
@@ -93,18 +95,20 @@ class GameController extends Controller
             'isAccepting' => 'True' 
         ]);
 
+        broadcast(new QuestionChangedByAdmin());
         return redirect()->back();
     }
 
     //change status of selected question to Finished
     public function deselectQuestion($quizId){
 
-    DB::table('questions')
-        ->join('categories', 'categories.id', '=', 'questions.category')
-        ->join('quizzes', 'quizzes.id', '=', 'categories.quiz')
-        ->where('questions.status', 'Selected')
-        ->update(['questions.status' => 'Finished']);
+        DB::table('questions')
+            ->join('categories', 'categories.id', '=', 'questions.category')
+            ->join('quizzes', 'quizzes.id', '=', 'categories.quiz')
+            ->where('questions.status', 'Selected')
+            ->update(['questions.status' => 'Finished']);
 
+            broadcast(new QuestionChangedByAdmin());
         return redirect()->back();
     }
 

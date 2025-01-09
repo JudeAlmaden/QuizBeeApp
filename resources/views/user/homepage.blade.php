@@ -132,8 +132,12 @@
             <div class="col-auto col-sm-2 col-md-2 col-xl-2 px-sm-2 d-flex align-items-center icon">
                 <span>Quizzly</span>
                 <div class="vl"></div>
-                <i class="fa-solid fa-lightbulb" style="color:var(--bs-warning)"></i>
+                <i class="fa-solid fa-lightbulb" style="color:var(--bs-warning)">
+                </i>
             </div>    
+            <div class="text-light text-right px-3">
+                By: Almaden, Justine Jude D. (BSIT-III)
+            </div>
         </div>
         <!-- Sidebar -->
 
@@ -160,10 +164,7 @@
                     </a>
                     <div class="bg-light w-100" style="height:2px"></div>
                     <!-- Navbar List -->
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start w-100" id="menu">
-                        <li class="nav-item">
-                        </li>
-                    </ul>
+
                     <hr>
                 </div>
             </div>

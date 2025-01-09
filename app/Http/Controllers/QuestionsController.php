@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Events\AcceptingAnswersToggledByAdmin;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -205,29 +207,53 @@ class QuestionsController extends Controller
         return response()->json($question);
     }
     
+    //Toggle for allowing users to allow acceptings answers to questions
+    public function apiQuestionToggleRequest($questionId, $userId)
+    {
+        // Check if the user is the quiz maker by running the custom SQL query
+        $quizMaker = DB::select(
+            "SELECT questions.id as question_id, user_quiz_rel.user as quiz_maker_id
+            FROM questions
+            JOIN categories ON categories.id = questions.category
+            JOIN quizzes ON quizzes.id = categories.quiz
+            JOIN user_quiz_rel ON user_quiz_rel.quiz = quizzes.id
+            WHERE questions.id = ? AND user_quiz_rel.user = ? AND user_quiz_rel.relation = 'Creator'",
+            [$questionId, $userId]
+        );
     
-    public function apiQuestionToggleRequest($questionId){   
-        $question = DB::table('questions')
-        ->where('id', $questionId)
-        ->first();
-
-        // Toggles The status
+        // If no quiz maker is found, return an error response
+        if (empty($quizMaker)) {
+            return response()->json(['error' => 'You are not the quiz maker.'], 403);
+        }
+    
+        // Retrieve the question data
+        $question = DB::table('questions')->where('id', $questionId)->first();
+    
+        // If the question exists, toggle the status
         if ($question) {
             $newStatus = $question->isAccepting === 'True' ? 'False' : 'True';
-        
+    
             DB::table('questions')
                 ->where('id', $questionId)
                 ->update([
                     'isAccepting' => $newStatus,
                 ]);
         }
-
+    
+        // Fetch the updated question
         $updatedQuestion = DB::table('questions')
-        ->where('id', $questionId)
-        ->first();
-
+            ->where('id', $questionId)
+            ->first();
+    
+        // Broadcast the event with the updated `isAccepting` status
+        broadcast(new AcceptingAnswersToggledByAdmin([
+            'isAccepting' => $updatedQuestion->isAccepting,
+        ]));
+    
         return response()->json($updatedQuestion);
     }
+    
+    
 
     public function apiQuestionView($questionId){   
 
