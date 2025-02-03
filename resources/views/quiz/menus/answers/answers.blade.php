@@ -261,8 +261,10 @@
                                 <div class="team-name">{{$result->name}}</div>
                                 <div class="first-correct text-light">
                                     1st To answer correctly <br>
-                                    <i class="text-success"> {{($result->bonus /100)* $result->basepoints}}pts Bonus </i>
-                                    <i class="text-success"> + {{$result->basepoints}}</i>
+                                    <i class="text-success"> {{$result->basepoints}}</i>
+                                    @if($result->bonus != 0)
+                                        <i class="text-success">+ {{ ($result->bonus / 100) * $result->basepoints }}pts Bonus</i>
+                                    @endif        
                                 </div>
                             </div>
                             <div class="answer-wrapper">

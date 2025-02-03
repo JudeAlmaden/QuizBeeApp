@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('user')->references('id')->on('users')->onDelete('cascade');
             $table->string('answer')->nullable(false);
             $table->string('evaluation')->nullable(false)->default('Not Evaluated');
-            $table->bigInteger('points')->nullable(false)->default('0');
+            $table->decimal('points', 8, 2)->default(0);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
         });

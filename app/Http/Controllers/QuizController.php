@@ -212,6 +212,7 @@ class QuizController extends Controller
             ->join('categories', 'questions.category', '=', 'categories.id')
             ->join('quizzes', 'categories.quiz', '=', 'quizzes.id')
             ->where('questions.status', 'Finished')
+            ->where('quizzes.id', $quizId)
             ->orderBy('questions.updated_at', 'desc')
             ->get();
 

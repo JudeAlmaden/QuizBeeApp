@@ -18,6 +18,6 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 });
 
 
-Broadcast::channel('CH1', function () {
+Broadcast::channel('CH1.{quiz_id}', function () {
     
 });

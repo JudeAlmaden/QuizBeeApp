@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('category')->references('id')->on('categories')->onDelete('cascade');
             $table->string('question')->nullable(false);
             $table->string('answer')->nullable(false);
-            $table->integer('points')->nullable(false);
+            $table->decimal('points', 8, 2)->nullable(false);
             $table->integer('bonus')->nullable(false) -> default(0);
             $table->string('status')->nullable(false) -> default("Available");
             $table->string('isAccepting')->nullable(false) -> default("False");

@@ -438,18 +438,15 @@
         });
 
         // Subscribe to the channel and listen for all events
-        window.Echo.channel('CH1')
-        .listen('QuestionChangedByAdmin', (event) => {
-            location.reload();
-        });
+        window.Echo.channel(`CH1.${quizId}`)
+            .listen('QuestionChangedByAdmin', () => {
+                location.reload();
+            });
 
-        window.Echo.channel('CH1')
-        .listen('AcceptingAnswersToggledByAdmin', (event) => {
-            if(event.data.isAccepting == "True"){
-                alert(`Accepting answers has been enabled.`);
-            }else{
-                alert(`Accepting answers has been disabled.`);
-            }
-        });
+        window.Echo.channel(`CH1.${quizId}`)
+            .listen('AcceptingAnswersToggledByAdmin', (event) => {
+                alert(`Accepting answers has been ${event.data.isAccepting === "True" ? "enabled" : "disabled"}.`);
+            });
+
     });
 </script>

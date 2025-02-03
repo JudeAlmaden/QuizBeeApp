@@ -7,6 +7,7 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\GameController;
 use App\Events\AcceptingAnswersToggledByAdmin;
+use App\Events\QuestionChangedByAdmin;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -101,7 +102,7 @@ Route::delete('/quiz/{quizId}/category/{categoryId}/question/{questionId}',[Ques
     ->middleware('checkprivilege')
     ->name('question.delete');
 
-//Review
+//Review last finished question
 Route::get('/quiz/{quizId}/review/{questionId}', [QuizController::class, 'viewPlayerAnswers']) 
     ->middleware('check.user.session')
     ->name('answers.review');    
@@ -119,3 +120,8 @@ Route::get('/quiz/{quizId}/team/approve/{id}', [QuizController::class, 'approveT
 
 Route::post('/quiz/{quizId}/admin',[GameController::class, 'getQuestion'])->name('quiz.play.question.get');
 Route::get('/quiz/{quizId}/admin/deselect',[GameController::class, 'deselectQuestion'])->name('quiz.play.question.clear');
+
+// Route::get('/test', function(){
+//     event(new AcceptingAnswersToggledByAdmin([],1));
+//     return "Event fired";
+// });

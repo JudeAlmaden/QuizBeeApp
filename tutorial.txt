@@ -1,10 +1,4 @@
-applications needed
-
-Composer
-Xampp
-
 ====================================================
-
 Setup accounts 
 
 Database>seeders>databaseSeeder
@@ -16,10 +10,17 @@ Reseeding database and clearing data
 php artisan migrate:fresh --seed
 
 =====================================================
-
 To run the application, enter the command via cmd
-php artisan serve --host=0.0.0.0 --port=8000 
 
+//Unblocks a port
+netsh advfirewall firewall add rule name="Reverb WebSockets" dir=in action=allow protocol=TCP localport=8080
+
+//Start server 
+php artisan serve --host=0.0.0.0 --port=8000 
+php artisan reverb:start --host=0.0.0.0 --port=8080 --debug
+npm run dev
+
+//Ensure the ip is correct for .env and vite.config.js files
 =====================================================
 
 Reseeding database and clearing data

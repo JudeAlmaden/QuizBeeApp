@@ -265,7 +265,7 @@
         <div class="row" id="podium-wrapper">
         <a href="javascript:history.back()" class="btn-nav"><i class="fa-solid fa-chevron-left "></i></a>
         @if (isset($results) && count($results) > 0)
-            <div class="col-12 d-flex no-gutters" style="padding:3vh 10vw 3vh 10vw; height:90vh; align-items:center; justify-content:center">
+            {{-- <div class="col-12 d-flex no-gutters" style="padding:3vh 10vw 3vh 10vw; height:90vh; align-items:center; justify-content:center">
                 @foreach ( $results as $result )
                     @if( $loop->index == 1 )
                         <div class="col-4 podium" style="order:1">
@@ -333,7 +333,7 @@
                     @endif
                 @endforeach       
             </div>
-        </div>
+        </div> --}}
 
         <div class="row">
             <div class="col-12" style="padding:0vw 3vw 0vw 3vw;margin-top: 50px; display:flex; flex-direction:column; align-items:center; min-height:100vh">

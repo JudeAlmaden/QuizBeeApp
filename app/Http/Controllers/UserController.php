@@ -61,6 +61,7 @@ class UserController extends Controller
             'members' => 'array',
             'members.*' => 'string|max:255'
         ]);
+        
         //Preparation
         $members = $request->input('members', []);
         $memberData = [];

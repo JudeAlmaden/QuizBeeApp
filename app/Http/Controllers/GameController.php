@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Events\QuestionChangedByAdmin;
-use App\Events\AnswerToggledByAdmin;
 class GameController extends Controller
 {
     // Functions for the game itself
@@ -92,10 +91,10 @@ class GameController extends Controller
         ->where('id', $question->id)
         ->update([
             'status' => 'Selected',
-            'isAccepting' => 'True' 
+            'isAccepting' => 'False' 
         ]);
 
-        broadcast(new QuestionChangedByAdmin());
+        broadcast(new QuestionChangedByAdmin($quizId));
         return redirect()->back();
     }
 
@@ -108,7 +107,7 @@ class GameController extends Controller
             ->where('questions.status', 'Selected')
             ->update(['questions.status' => 'Finished']);
 
-            broadcast(new QuestionChangedByAdmin());
+            broadcast(new QuestionChangedByAdmin($quizId));
         return redirect()->back();
     }
 
@@ -159,7 +158,7 @@ class GameController extends Controller
 
         //Prevent user from submitting answer if question is no longer selected
         if ($question->status != "Selected" || $question->isAccepting == "False") {
-            return redirect()->back()->with('error', 'Your answer did not make it on time :(');
+            return redirect()->back()->with('error', 'Admin is not accepting answers :(');
         }
 
         //Check if their answer matches

@@ -192,15 +192,17 @@
                                                 @csrf
                                                 <!-- Your question -->
                                                 <div class="form-group">
-                                                    <label for="Descriptiomn" class="col-form-label" >Question </label>
-                                                    <textarea class="form-control" id="question" name="question" rows="5" required></textarea>
+                                                    <label for="question" class="col-form-label">Question</label>
+                                                    <textarea class="form-control" id="question" name="question" rows="5" required maxlength="255"></textarea>
+                                                    <small class="form-text text-muted">Maximum 255 characters</small>
                                                 </div>
+                                                
 
                                                 <!-- Settings -->
                                                 <!-- Points -->
                                                 <div class="form-group">
                                                     <label for="points" class="col-form-label" >Points</label>
-                                                    <input type="number" class="form-control" id="points" name="points" value="100" rows="5" required></input>
+                                                    <input type="decimalInput" class="form-control" id="points" name="points" value="100" rows="5" required></input>
                                                 </div>
                                                 <!-- Point Multipler -->
                                                 <div class="form-group">

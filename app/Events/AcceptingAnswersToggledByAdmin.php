@@ -19,10 +19,11 @@ class AcceptingAnswersToggledByAdmin implements ShouldBroadcastNow
      * Create a new event instance.
      */
     public $data;
-
-     public function __construct($data)
+    public $quizId; 
+     public function __construct($data, $quizId)
      {
          $this->data = $data;
+         $this->quizId = $quizId;
      }
  
 
@@ -33,8 +34,7 @@ class AcceptingAnswersToggledByAdmin implements ShouldBroadcastNow
      */
     public function broadcastOn(): array
     {
-        return  [new Channel('CH1')];
-    
+        return  [new Channel('CH1.'.$this->quizId)];
     }
 
 

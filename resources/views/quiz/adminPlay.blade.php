@@ -23,7 +23,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-        
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
         * {
             margin: 0;
@@ -195,14 +194,21 @@
             /* transition:1s; */
         }
 
-        .btn-reveal:disabled, .btn-stop:disabled, .nav-button:disabled {
-            color:grey !important;
+        .btn-reveal:disabled, 
+        .btn-stop:disabled, 
+        .nav-button:disabled, 
+        #btn-select-new:disabled {
+            color: grey !important;
         }
 
-        .btn-reveal:disabled:hover, .btn-stop:disabled:hover, #reviewAnswers:disabled:hover{
+        .btn-reveal:disabled:hover, 
+        .btn-stop:disabled:hover, 
+        #reviewAnswers:disabled:hover, 
+        #btn-select-new:disabled:hover {
             background-color: transparent;
-            cursor:default;
+            cursor: default;
         }
+
         .area:hover{
             background-color:rgba(55,5,145,1);
         }
@@ -311,7 +317,27 @@
         }
 
         .hidden { display: none; }
-    </style>
+
+        .nav-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-size: 0.75rem; /* Make text smaller */
+            padding: 5px;
+        }
+
+        .nav-button i {
+            font-size: 1.2rem; /* Adjust icon size */
+            margin-bottom: 2px;
+        }
+
+        .nav-button span {
+            display: block;
+            font-size: 0.7rem; /* Adjust text size */
+            line-height: 1.2;
+        }
+
     </style>
 </head>
 <body>
@@ -408,11 +434,16 @@
                 @endif
             </div>
         </div>
+
         <!-- Navigation -->
         <div class="row">
             <div class="col-12 d-flex" id="bottom-nav">
-
-                <button class="nav-button"> <a href=" {{route('quiz.view', $quizId)}}" style="width:100%; height: 100%;"><i class="fa-solid fa-chevron-left"></i></a></button>
+                <button class="nav-button">
+                    <a href="{{ route('quiz.view', $quizId) }}">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </a>
+                </button>
+                
                 <div class="controls" style="height:100%">
                     @if (!isset($currentQuestion))
                         <form action="{{route('quiz.play.question.get',$quizId)}}" method="POST" style="padding:0px" style="height:100%">
@@ -436,29 +467,36 @@
 
                 @if (isset($currentQuestion))
                 <!-- Nav controls -->
-                    <a href = "{{route('quiz.play.question.clear',$quizId)}}" class="nav-button hidden" id="btn-select-new" title="Select a new question" >
-                       <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
-                    </a>
-
-                    <!-- Stop accepting answers -->
-                    <button class="nav-button btn-stop" title="Stop accepting answers" >
-                        <i class="fa fa-hourglass-end" aria-hidden="true"></i>
-                    </button>
-
-                    <!-- Reveal answer-->
-                    <button class="nav-button btn-reveal" title="Reveal Answer" >
-                        <i class="fa fa-eye" aria-hidden="true"></i>
-                    </button>
-
-                    <!-- See answer of players on this question -->
-                    <button onclick="location.href='{{ route('answers.review', [$quizId, $currentQuestion->id]) }}'" class="nav-button" id="reviewAnswers" title="See Player Answers" disabled>
-                        <i class="fa-solid fa-clipboard-question"></i>
-                    </button>
-                @endif
-                    <!--To Check leaderboard  -->
-                    <a href="{{route('leaderboards.view', $quizId)}}" class="ml-auto nav-button" title="Check Leaderboards">
-                        <i class="fa-solid fa-ranking-star"></i>
-                    </a>
+                <button class="nav-button hidden btn-select-new"  title="Select a new question" onclick="location.href='{{ route('quiz.play.question.clear', $quizId) }}'" disabled>
+                    <i class="fa fa-chevron-circle-right" aria-hidden="true"></i>
+                    <span>Select</span>
+                </button>
+            
+                <!-- Stop accepting answers -->
+                <button class="nav-button btn-stop" title="Toggle accepting answers">
+                    <i class="fa fa-hourglass-end" aria-hidden="true"></i>
+                    <span>Start Timer</span>
+                </button>
+            
+                <!-- Reveal answer -->
+                <button class="nav-button btn-reveal" title="Reveal Answer">
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                    <span>Reveal</span>
+                </button>
+            
+                <!-- See answer of players on this question -->
+                <button onclick="location.href='{{ route('answers.review', [$quizId, $currentQuestion->id]) }}'"
+                    class="nav-button" id="reviewAnswers" title="See Player Answers" disabled>
+                    <i class="fa-solid fa-clipboard-question"></i>
+                    <span>See Answers</span>
+                </button>
+            @endif
+            
+            <!-- To Check leaderboard -->
+            <a href="{{ route('leaderboards.view', $quizId) }}" class="ml-auto nav-button" title="Check Leaderboards">
+                <i class="fa-solid fa-ranking-star"></i>
+                <span>Ranking</span>
+            </a>
             </div>
         </div>
     </div>
@@ -476,8 +514,10 @@
     document.addEventListener('DOMContentLoaded', function () {
         btnReveal =   document.querySelector('.btn-reveal');
         btnStop =   document.querySelector('.btn-stop');
+        btnStopText = btnStop.querySelector('span');
         btnReview =   document.getElementById('reviewAnswers');
         btnNew = document.getElementById('btn-select-new');
+        btnSelectNew = document.querySelector('.btn-select-new');
 
         const questionId = document.getElementById('questionId').getAttribute('value');
 
@@ -506,6 +546,7 @@
             console.error('There was a problem with the fetch operation:', error);
         });
 
+        //Toggle for accepting answers
         btnStop.addEventListener('click', function() {
             fetch(`{{ route('currentQuestion.toggleRequest', ['questionId' => '__QUESTION_ID__', 'userId' => session('user')->id]) }}`.replace('__QUESTION_ID__', questionId))
             .then(response => {
@@ -517,10 +558,14 @@
                 .then(data => {
                     console.log(data); 
                     if (data.isAccepting === "True") {
+                        btnStopText.innerText = "Stop Timer";
                         btnReveal.disabled = true;
+                        btnSelectNew.disabled = true;
                         btnStop.style.color = "red";
                         btnStop.title = "Stop accepting answers"
                     } else {
+                        btnStopText.innerText = "Start Timer";
+                        btnSelectNew.disabled = true;
                         btnReveal.disabled = false;
                         btnStop.style.color = "white"
                         btnStop.title = "Allow answers"
@@ -531,12 +576,14 @@
                 });
             });
 
+            
         //For revealing the answer
         btnReveal.addEventListener('click', function() {
             //Prevent quiz master clicking these again
             btnReveal.disabled = true;
             btnStop.disabled = true;
             btnReview.disabled= false;
+            btnSelectNew.disabled = false;
             btnNew.classList.remove('hidden');
             //Get all choice container
             const answerWrappers = document.querySelectorAll('.answer-wrapper');

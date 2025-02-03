@@ -79,11 +79,14 @@ class QuestionsController extends Controller
     
     public function createQuestions(Request $request, $quizId, $categoryId){
         $request->validate([
-            'question' => 'required',
+            'question' => 'required|max:255',
             'points' => 'required',
             'bonus' => 'required',
             'format' => 'required',
+        ], [
+            'question.max' => 'The question cannot exceed 255 characters.',
         ]);
+        
 
         $question = $request -> input('question');
         $answer = "";
@@ -228,7 +231,20 @@ class QuestionsController extends Controller
     
         // Retrieve the question data
         $question = DB::table('questions')->where('id', $questionId)->first();
-    
+        $quizData = DB::select(
+            "SELECT questions.id as question_id, 
+                    quizzes.id as quiz_id, 
+                    categories.id as category_id
+             FROM questions
+             INNER JOIN categories ON categories.id = questions.category
+             INNER JOIN quizzes ON quizzes.id = categories.quiz
+             WHERE questions.id = ?",
+            [$questionId]
+        );
+        
+        // Get the first result
+        $quizData = $quizData[0] ?? null;
+
         // If the question exists, toggle the status
         if ($question) {
             $newStatus = $question->isAccepting === 'True' ? 'False' : 'True';
@@ -247,8 +263,8 @@ class QuestionsController extends Controller
     
         // Broadcast the event with the updated `isAccepting` status
         broadcast(new AcceptingAnswersToggledByAdmin([
-            'isAccepting' => $updatedQuestion->isAccepting,
-        ]));
+            'isAccepting' => $updatedQuestion->isAccepting
+        ],$quizData->quiz_id));
     
         return response()->json($updatedQuestion);
     }

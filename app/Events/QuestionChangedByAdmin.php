@@ -18,9 +18,11 @@ class QuestionChangedByAdmin implements ShouldBroadcastNow
     /**
      * Create a new event instance.
      */
-    public function __construct()
+    public $quizId;
+
+    public function __construct($quizId)
     {
-        //
+        $this->quizId = $quizId;
     }
 
     /**
@@ -30,14 +32,12 @@ class QuestionChangedByAdmin implements ShouldBroadcastNow
      */
     public function broadcastOn(): array
     {
-        return  [new Channel('CH1')];
-    
+        return  [new Channel('CH1.'.$this->quizId)];
     }
 
     public function broadcastWith()
     {
         return [
-            'data' =>   "Hello, world"
         ];
     }
 }
