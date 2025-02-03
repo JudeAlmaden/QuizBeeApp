@@ -11,8 +11,10 @@
     <!-- Stylesheet and scripts -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="/css/app.css">
 
     <!-- Metadata -->
@@ -226,7 +228,7 @@
                     @endif
 
                     <!-- Modal Form For Joining Quiz-->
-                    <div class="modal fade" id="modalJoin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal" id="modalJoin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -284,7 +286,7 @@
                     </div>
                     
                     <!-- Modal For Members -->
-                    <div class="modal fade" id="modalMembers" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal" id="modalMembers" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                             <div class="modal-header">
@@ -334,6 +336,7 @@
 </html>
 
 <script>
+    
     function addMember() {
         const container = document.getElementById('members-container');
         const newMemberDiv = document.createElement('div');
@@ -349,5 +352,6 @@
         const memberDiv = button.parentElement;
         memberDiv.remove();
     }
+
 </script>
 

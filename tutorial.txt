@@ -3,11 +3,11 @@ Setup accounts
 
 Database>seeders>databaseSeeder
 
-Run migration without clearing data
-php artisan db:seed
+php artisan db:fresh //Resets the database
+php artisan db:seed //Fills database with accounts
 
-Reseeding database and clearing data
-php artisan migrate:fresh --seed
+
+php artisan migrate:fresh --seed //All in one command
 
 =====================================================
 To run the application, enter the command via cmd
@@ -22,8 +22,5 @@ npm run dev
 
 //Ensure the ip is correct for .env and vite.config.js files
 =====================================================
-
-Reseeding database and clearing data
-php artisan migrate:fresh --seed
 
 
